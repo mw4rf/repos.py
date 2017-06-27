@@ -38,11 +38,14 @@
 
 # HISTORY
 #
+# V. 0.1.2 (27/06/2017)
+# Colored output.
+#
 # V. 0.1.1 (27/06/2017)
-# Code cleanup & licence
+# Code cleanup & licence.
 #
 # v.0.1 (26/06/2017)
-# Cloning Repos
+# Cloning repositories.
 
 # Configuration
 config_file = "repos.cfg"
@@ -58,6 +61,15 @@ class Repo:
 		self.name = ""
 		self.url = ""
 
+class bcolors:
+    HEADER = '\033[95m'
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    ORANGE = '\033[93m'
+    RED = '\033[91m'
+    END = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 # Get repositories list from config file
 repos = [] # Store repositories in this array
@@ -100,16 +112,16 @@ args = parser.parse_args()
 
 # Command = info
 def info():
-	print("Repositories list.")
+	print(bcolors.HEADER + "Repositories list." + bcolors.END)
 	for repo in repos:
-		print(repo.name + ": <" + repo.url + ">")
+		print(bcolors.BLUE + repo.name + ": <" + repo.url + ">" + bcolors.END)
 
 
 # Command = clone
 def clone():
-	print("Cloning repositories...")
+	print(bcolors.HEADER + "Cloning repositories..." + bcolors.END)
 	for repo in repos:
-		print("Cloning: <" + repo.name + ">")
+		print(bcolors.BLUE + "Cloning: <" + repo.name + ">" + bcolors.END)
 		for op in run_command(["git", "clone", repo.url]):
 			print(op, end="")
 
