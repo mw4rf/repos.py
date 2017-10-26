@@ -1,0 +1,6 @@
+# Ignore everything, so all repositories in our case
+*
+
+# But not these files
+!repos.py
+!.gitignore
